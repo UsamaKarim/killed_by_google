@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -23,7 +23,7 @@ class AppDrawer extends StatelessWidget {
               textScaleFactor: 2,
               text: TextSpan(
                 children: [
-                  TextSpan(
+                  const TextSpan(
                     text: 'G',
                     style: TextStyle(
                       fontFamily: 'Product Sans',
@@ -31,35 +31,35 @@ class AppDrawer extends StatelessWidget {
                       // fontSize: 18,
                     ),
                   ),
-                  TextSpan(
+                  const TextSpan(
                     text: 'o',
                     style: TextStyle(
                       fontFamily: 'Product Sans',
                       color: Colors.red,
                     ),
                   ),
-                  TextSpan(
+                  const TextSpan(
                     text: 'o',
                     style: TextStyle(
                       fontFamily: 'Product Sans',
                       color: Colors.yellow,
                     ),
                   ),
-                  TextSpan(
+                  const TextSpan(
                     text: 'g',
                     style: TextStyle(
                       fontFamily: 'Product Sans',
                       color: Colors.blue,
                     ),
                   ),
-                  TextSpan(
+                  const TextSpan(
                     text: 'l',
                     style: TextStyle(
                       fontFamily: 'Product Sans',
                       color: Colors.green,
                     ),
                   ),
-                  TextSpan(
+                  const TextSpan(
                     text: 'e',
                     style: TextStyle(
                       fontFamily: 'Product Sans',
@@ -70,30 +70,36 @@ class AppDrawer extends StatelessWidget {
                     text: ' Graveyard',
                     style: TextStyle(
                         fontFamily: 'Product Sans',
-                        color: Theme.of(context).textTheme.bodyText1.color),
+                        color: Theme.of(context).textTheme.bodyText1!.color),
                   ),
                 ],
               ),
             ),
           ),
-          Divider(),
+          const Divider(),
           Consumer<AppTheme>(
             builder: (context, provider, child) => SwitchListTile.adaptive(
-              title: Text('Dark Theme'),
+              title: const Text('Dark Theme'),
               value: provider.isDark,
               onChanged: (value) => provider.themeSwitcher = value,
             ),
           ),
-          Divider(),
+          const Divider(),
           ExpansionTile(
-            title: Text('Category'),
+            title: const Text('Category'),
             children: [
               CheckboxListTile(
-                  title: Text('Service'), value: false, onChanged: (value) {}),
+                  title: const Text('Service'),
+                  value: false,
+                  onChanged: (value) {}),
               CheckboxListTile(
-                  title: Text('App'), value: false, onChanged: (value) {}),
+                  title: const Text('App'),
+                  value: false,
+                  onChanged: (value) {}),
               CheckboxListTile(
-                  title: Text('Hardware'), value: false, onChanged: (value) {}),
+                  title: const Text('Hardware'),
+                  value: false,
+                  onChanged: (value) {}),
             ],
           ),
         ],

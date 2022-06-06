@@ -7,6 +7,8 @@ import 'package:killed_by_google/app/ui/app_drawer.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +16,7 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search),
             onPressed: () {},
           ),
         ],
@@ -24,10 +26,10 @@ class HomeScreen extends StatelessWidget {
           text: TextSpan(
             text: 'Killed by ',
             style: TextStyle(
-              color: Theme.of(context).textTheme.bodyText1.color,
+              color: Theme.of(context).textTheme.bodyText1?.color,
               fontFamily: 'Product Sans',
             ),
-            children: [
+            children: const [
               TextSpan(
                 text: 'G',
                 style: TextStyle(
@@ -75,21 +77,21 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
-      drawer: AppDrawer(),
-      body: GraveyardList(),
+      drawer: const AppDrawer(),
+      body: const GraveyardList(),
     );
   }
 }
 
 class GraveyardList extends StatefulWidget {
-  const GraveyardList();
+  const GraveyardList({Key? key}) : super(key: key);
 
   @override
-  _GraveyardListState createState() => _GraveyardListState();
+  State<GraveyardList> createState() => _GraveyardListState();
 }
 
 class _GraveyardListState extends State<GraveyardList> {
-  Future<void> _future;
+  late Future<List<Graveyard>> _future;
   @override
   void initState() {
     super.initState();
@@ -99,7 +101,7 @@ class _GraveyardListState extends State<GraveyardList> {
 
   var isLoading = true;
   Future<void> fake() async {
-    await Future.delayed(Duration(seconds: 5));
+    await Future.delayed(const Duration(seconds: 5));
     setState(() {
       isLoading = false;
     });
@@ -131,12 +133,12 @@ class _GraveyardListState extends State<GraveyardList> {
       builder: (context, snapshot) {
         return Column(
           children: [
-            if (isLoading) LinearProgressIndicator(),
+            if (isLoading) const LinearProgressIndicator(),
             Expanded(
               child: ListView.builder(
-                itemCount: snapshot.data.length,
+                itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) {
-                  final data = snapshot.data[index];
+                  final data = snapshot.data![index];
                   return Card(
                     color: theme
                         ? _colorsWithOpacity[index % _colors.length]
@@ -155,8 +157,8 @@ class _GraveyardListState extends State<GraveyardList> {
 
 class _BuildListTile extends StatelessWidget {
   const _BuildListTile({
-    Key key,
-    @required this.data,
+    Key? key,
+    required this.data,
   }) : super(key: key);
 
   final Graveyard data;
@@ -164,9 +166,9 @@ class _BuildListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-      title: Text(data.name),
-      subtitle: Text(data.description),
+      contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+      title: Text(data.name!),
+      subtitle: Text(data.description!),
     );
   }
 }

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:killed_by_google/app/repositories/data.dart';
 import 'package:killed_by_google/app/services/api.dart';
 import 'package:killed_by_google/app/services/caching.dart';
 import 'package:killed_by_google/app/ui/home_screen.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app/services/theme.dart';
 
@@ -15,7 +16,7 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp(this.sharedPreferences);
+  const MyApp(this.sharedPreferences, {Key? key}) : super(key: key);
   final SharedPreferences sharedPreferences;
 
   @override
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
         builder: (context, value, child) => MaterialApp(
           title: 'Killed by Google',
           theme: value.currentTheme,
-          home: HomeScreen(),
+          home: const HomeScreen(),
         ),
       ),
     );
